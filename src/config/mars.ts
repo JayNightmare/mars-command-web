@@ -1,0 +1,35 @@
+const configuredLauncherUrl =
+	import.meta.env.VITE_LAUNCHER_DOWNLOAD_URL?.trim() ?? "";
+
+function isSafeDownloadUrl(value: string): boolean {
+	try {
+		const url = new URL(value);
+		return url.protocol === "https:" || url.protocol === "http:";
+	} catch {
+		return false;
+	}
+}
+
+export const marsConfig = {
+	serverAddress:
+		import.meta.env.VITE_SERVER_ADDRESS?.trim() ||
+		"play.nexusgit.info",
+	voiceAddress:
+		import.meta.env.VITE_VOICE_ADDRESS?.trim() ||
+		"voice.nexusgit.info",
+	minecraftVersion: "1.21.1",
+	loader: "NeoForge",
+	serverName: "Mars",
+	clientVersion: import.meta.env.VITE_CLIENT_VERSION?.trim() || "0.1.2",
+	statusApiUrl:
+		import.meta.env.VITE_STATUS_API_URL?.trim() ||
+		(import.meta.env.DEV
+			? "/api/mcstatus"
+			: "https://api.mcstatus.io/v2/status/java"),
+	launcherDownloadUrl: isSafeDownloadUrl(configuredLauncherUrl)
+		? configuredLauncherUrl
+		: null,
+	useMockStatus:
+		import.meta.env.DEV &&
+		import.meta.env.VITE_USE_MOCK_STATUS === "true",
+} as const;
