@@ -69,4 +69,6 @@ The current five-step install guide is informational. The future Tauri release s
 
 ## Deployment
 
-Build with `npm run build`, then deploy `dist/` to the selected static host and attach `play.nexusgit.info`. Configure the MCStatus.io API base and launcher artifact URL in the hosting provider's build environment. If the deployed site cannot fetch MCStatus.io directly, route `/api/mcstatus/*` through a server-side reverse proxy to `https://api.mcstatus.io/v2/status/java/*` and set `VITE_STATUS_API_URL=/api/mcstatus`. For a subpath deployment, set `BASE_PATH` at build time (including leading and trailing slashes).
+GitHub Pages deploys automatically when changes are pushed to `main`, or manually from the Actions tab with **Deploy to GitHub Pages**. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow builds and publishes `dist/`; it sets `BASE_PATH` to the repository subpath for project sites and `/` for `*.github.io` user or organization sites.
+
+The project site URL is `https://<owner>.github.io/mars-command-web/`. To build locally for that URL in PowerShell, set `$env:BASE_PATH="/mars-command-web/"` before running `npm run build`. Configure `VITE_LAUNCHER_DOWNLOAD_URL` and other public `VITE_*` values in the workflow if needed; GitHub Pages cannot provide a server-side proxy, so the status API uses its public MCStatus.io endpoint directly. Never put secrets in `VITE_*` values.

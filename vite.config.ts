@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
 
 	return {
-		base: env.BASE_PATH || "/",
+		base: process.env.BASE_PATH || env.BASE_PATH || "/",
 		plugins: [react(), tailwindcss()],
 		server: {
 			proxy: {
