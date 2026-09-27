@@ -69,6 +69,6 @@ The current five-step install guide is informational. The future Tauri release s
 
 ## Deployment
 
-GitHub Pages deploys automatically when changes are pushed to `main`, or manually from the Actions tab with **Deploy to GitHub Pages**. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow builds and publishes `dist/`; it sets `BASE_PATH` to the repository subpath for project sites and `/` for `*.github.io` user or organization sites.
+GitHub Pages deploys automatically when changes are pushed to `main`, or manually from the Actions tab with **Deploy to GitHub Pages**. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow builds and publishes `dist/` for the custom domain `https://mars.nexusgit.info/`, with `BASE_PATH=/` and the domain CNAME included in the artifact.
 
-The project site URL is `https://<owner>.github.io/mars-command-web/`. To build locally for that URL in PowerShell, set `$env:BASE_PATH="/mars-command-web/"` before running `npm run build`. Configure `VITE_LAUNCHER_DOWNLOAD_URL` and other public `VITE_*` values in the workflow if needed; GitHub Pages cannot provide a server-side proxy, so the status API uses its public MCStatus.io endpoint directly. Never put secrets in `VITE_*` values.
+To build locally for the custom domain in PowerShell, set `$env:BASE_PATH="/"` before running `npm run build`. Configure `VITE_LAUNCHER_DOWNLOAD_URL` and other public `VITE_*` values in the workflow if needed; GitHub Pages cannot provide a server-side proxy, so the status API uses its public MCStatus.io endpoint directly. Never put secrets in `VITE_*` values.
