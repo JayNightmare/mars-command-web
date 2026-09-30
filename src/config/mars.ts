@@ -1,7 +1,11 @@
 const configuredLauncherUrl =
-	import.meta.env.VITE_LAUNCHER_DOWNLOAD_URL?.trim() ?? "";
+	import.meta.env.VITE_LAUNCHER_DOWNLOAD_URL?.trim() ??
+	`${import.meta.env.BASE_URL}setup.exe`;
 
 function isSafeDownloadUrl(value: string): boolean {
+	if (/^(?:\/(?!\/)|\.\/)/.test(value)) {
+		return true;
+	}
 	try {
 		const url = new URL(value);
 		return url.protocol === "https:" || url.protocol === "http:";
