@@ -3,7 +3,7 @@ import { ClipboardList } from "lucide-react";
 const installSteps = [
 	"Download the Mars Command Launcher",
 	"Install or open the launcher",
-	"Sign in with your Microsoft Minecraft account",
+	"Press the 'Setup' button",
 	"Let the client synchronise the required Mars files",
 	"Launch Mars and connect to play.nexusgit.info",
 ];
