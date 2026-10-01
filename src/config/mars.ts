@@ -29,7 +29,7 @@ export const marsConfig = {
 		import.meta.env.VITE_STATUS_API_URL?.trim() ||
 		(import.meta.env.DEV
 			? "/api/mcstatus"
-			: "https://api.mcstatus.io/v2/status/java/play.nexusgit.info"),
+			: "https://api.mcstatus.io/v2/status/java"),
 	launcherDownloadUrl: isSafeDownloadUrl(configuredLauncherUrl)
 		? configuredLauncherUrl
 		: null,

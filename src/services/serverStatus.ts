@@ -42,14 +42,11 @@ function optionalCount(value: unknown): number | null {
 }
 
 function optionalCleanText(value: unknown): string | null {
-	if (!isRecord(value) || typeof value.clean !== "string")
-		return null;
+	if (!isRecord(value) || typeof value.clean !== "string") return null;
 	return value.clean.trim() || null;
 }
 
-export function parseMcStatusIoResponse(
-	value: unknown,
-): ServerStatus | null {
+export function parseMcStatusIoResponse(value: unknown): ServerStatus | null {
 	if (!isRecord(value)) return null;
 
 	const { online, host, port } = value;
@@ -69,8 +66,7 @@ export function parseMcStatusIoResponse(
 	const version = isRecord(value.version) ? value.version : null;
 	const retrievedAt = value.retrieved_at;
 	const retrievedDate =
-		typeof retrievedAt === "number" &&
-		Number.isFinite(retrievedAt)
+		typeof retrievedAt === "number" && Number.isFinite(retrievedAt)
 			? new Date(retrievedAt)
 			: null;
 	const checkedAt =
@@ -95,9 +91,7 @@ export function parseMcStatusIoResponse(
 	};
 }
 
-export class McStatusIoServerStatusProvider
-	implements ServerStatusProvider
-{
+export class McStatusIoServerStatusProvider implements ServerStatusProvider {
 	private readonly apiUrl: string;
 	private readonly serverAddress: string;
 	private readonly request: typeof fetch;
@@ -124,10 +118,7 @@ export class McStatusIoServerStatusProvider
 
 		try {
 			const endpoint = `${this.apiUrl.replace(/\/+$/, "")}/${encodeURIComponent(this.serverAddress)}`;
-			const response = await this.request(endpoint, {
-				headers: { Accept: "application/json" },
-				signal: controller.signal,
-			});
+			const response = await this.request(endpoint);
 
 			if (!response.ok)
 				return offlineStatus(
