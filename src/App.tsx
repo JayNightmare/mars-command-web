@@ -31,8 +31,8 @@ function App() {
 							className="mock-notice"
 							role="status"
 						>
-							SIMULATED TELEMETRY //
-							DEVELOPMENT ONLY
+							TELEMETRY DATA // MARS
+							COMMAND ONLY
 						</p>
 					)}
 

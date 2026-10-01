@@ -12,7 +12,7 @@ export function LauncherDownloadCard() {
 			<div className="launcher-copy">
 				<p className="eyebrow">
 					<Rocket size={14} aria-hidden="true" />{" "}
-					CLIENT DEPLOYMENT // PREVIEW CHANNEL
+					CLIENT DEPLOYMENT // DEPLOYMENT CHANNEL
 				</p>
 				<h2 id="launcher-heading">
 					MARS COMMAND CLIENT
@@ -20,10 +20,6 @@ export function LauncherDownloadCard() {
 				<p className="launcher-subtitle">
 					Synchronised client transport for the
 					Mars server
-				</p>
-				<p className="launcher-disclaimer">
-					Client synchronisation is not available
-					yet. This release channel is a preview
 				</p>
 				<div className="launcher-actions">
 					{marsConfig.launcherDownloadUrl ? (
