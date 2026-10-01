@@ -100,7 +100,7 @@ export class McStatusIoServerStatusProvider implements ServerStatusProvider {
 	constructor(
 		apiUrl = marsConfig.statusApiUrl,
 		serverAddress = marsConfig.serverAddress,
-		request: typeof fetch = fetch,
+		request: typeof fetch = (input, init) => fetch(input, init),
 		timeoutMs = 5000,
 	) {
 		this.apiUrl = apiUrl;
@@ -118,7 +118,10 @@ export class McStatusIoServerStatusProvider implements ServerStatusProvider {
 
 		try {
 			const endpoint = `${this.apiUrl.replace(/\/+$/, "")}/${encodeURIComponent(this.serverAddress)}`;
-			const response = await this.request(endpoint);
+
+			const response = await this.request(endpoint, {
+				signal: controller.signal,
+			});
 
 			if (!response.ok)
 				return offlineStatus(
@@ -167,7 +170,7 @@ export class MockServerStatusProvider implements ServerStatusProvider {
 			port: 25565,
 			playersOnline: 0,
 			playersMax: 67,
-			latencyMs: 0,
+			latencyMs: 9,
 			motd: "The moon has been informed.",
 			versionName: `Minecraft ${marsConfig.minecraftVersion}`,
 			checkedAt: new Date().toISOString(),

@@ -25,11 +25,7 @@ export const marsConfig = {
 	loader: "NeoForge",
 	serverName: "Mars",
 	clientVersion: import.meta.env.VITE_CLIENT_VERSION?.trim() || "0.1.2",
-	statusApiUrl:
-		import.meta.env.VITE_STATUS_API_URL?.trim() ||
-		(import.meta.env.DEV
-			? "/api/mcstatus"
-			: "https://api.mcstatus.io/v2/status/java"),
+	statusApiUrl: "https://api.mcstatus.io/v2/status/java",
 	launcherDownloadUrl: isSafeDownloadUrl(configuredLauncherUrl)
 		? configuredLauncherUrl
 		: null,
