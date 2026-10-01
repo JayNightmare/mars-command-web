@@ -139,7 +139,7 @@ describe("status providers", () => {
 	it("queries the encoded server address and maps real API fields", async () => {
 		let requestedUrl = "";
 		const provider = new McStatusIoServerStatusProvider(
-			"https://api.mcstatus.io/v2/status/java/",
+			"https://api.mcstatus.io/v2/status/java",
 			"play.nexusgit.info:25566",
 			async (input) => {
 				requestedUrl = String(input);
